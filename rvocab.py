@@ -12,7 +12,16 @@ words = words.split(" ")
 cleared_words = []
 
 for word in words:
-    if len(word) > 1:
+    if len(word) > 3:
         cleared_words.append(word)
 
 del words
+
+cleared_words.sort()
+
+for word in cleared_words:
+    print(word)
+# unique_words = []
+#
+# for word in cleared_words:
+#

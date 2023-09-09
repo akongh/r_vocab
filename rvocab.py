@@ -10,8 +10,10 @@ text = text.strip()
 
 text = text.split(" ")
 clear_text = []
+count = 0
 
 for word in text:
     if len(word) > 1:
+        count += 1
         clear_text.append(word)
-        print(word)
+        print(f"{count} - {word}")

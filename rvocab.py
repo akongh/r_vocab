@@ -10,10 +10,7 @@ words = words.strip()
 
 words = words.split(" ")
 cleared_words = []
-count = 0
 
 for word in words:
     if len(word) > 1:
-        count += 1
-        print(f"{count} - {word}")
         cleared_words.append(word)

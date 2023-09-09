@@ -15,5 +15,5 @@ count = 0
 for word in words:
     if len(word) > 1:
         count += 1
-        cleared_words.append(word)
         print(f"{count} - {word}")
+        cleared_words.append(word)

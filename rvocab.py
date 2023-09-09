@@ -6,5 +6,6 @@ file.close()
 
 text = re.sub(r"[\n\r\t]", r" ", text)
 text = re.sub(r" {2,}", r" ", text)
+text = re.sub(r"[.,?!] ", r" ", text)
 
 print(text)

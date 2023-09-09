@@ -21,7 +21,10 @@ cleared_words.sort()
 
 for word in cleared_words:
     print(word)
+
 # unique_words = []
 #
 # for word in cleared_words:
 #
+
+

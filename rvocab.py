@@ -1,19 +1,19 @@
 import re
 
 file = open("text.txt")
-text = file.read().lower()
+words = file.read().lower()
 file.close()
 
-text = re.sub("[\\W\\d_]", " ", text)
-text = re.sub(" {2,}", " ", text)
-text = text.strip()
+words = re.sub("[\\W\\d_]", " ", words)
+words = re.sub(" {2,}", " ", words)
+words = words.strip()
 
-text = text.split(" ")
-clear_text = []
+words = words.split(" ")
+cleared_words = []
 count = 0
 
-for word in text:
+for word in words:
     if len(word) > 1:
         count += 1
-        clear_text.append(word)
+        cleared_words.append(word)
         print(f"{count} - {word}")

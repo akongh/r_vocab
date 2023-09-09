@@ -14,3 +14,5 @@ cleared_words = []
 for word in words:
     if len(word) > 1:
         cleared_words.append(word)
+
+del words

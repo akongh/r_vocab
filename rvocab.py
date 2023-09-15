@@ -34,4 +34,4 @@ resulting_words.sort(key=lambda x: x[0])
 resulting_words.reverse()
 
 for word in resulting_words:
-    print(word)
+    print(str(word[0]) + " - " + word[1])

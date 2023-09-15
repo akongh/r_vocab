@@ -2,7 +2,8 @@ import re
 import os
 
 if not os.path.exists('text.txt'):
-    print("ОШИБКА\ntext.txt не найден.")
+    print("ОШИБКА\n"
+          "Файл \"text.txt\" не найден.")
     exit()
 
 file = open("text.txt")
@@ -41,7 +42,7 @@ resulting_list = []
 for word in resulting_words:
     resulting_list.append(str(word[0]) + "  " + word[1])
 
-about_unique_words = "Уникальных слов: " + str(len(resulting_words))
+about_unique_words = "Уникальных слов: " + str(len(resulting_words)) + "."
 
 rational_vocabularu = "\n".join(resulting_list)
 rational_vocabularu = about_unique_words + "\n\n" + rational_vocabularu
@@ -50,8 +51,10 @@ file = open("rational_vocabularu.txt", "w")
 file.write(rational_vocabularu)
 
 if os.path.exists('rational_vocabularu.txt'):
-    print("СДЕЛАНО\nrational_vocabularu.txt успешно создан.")
-    print(about_unique_words)
+    print("СДЕЛАНО\n"
+          "Файл \"rational_vocabularu.txt\" успешно создан.\n" +
+          about_unique_words)
 else:
-    print("ОШИБКА\nrational_vocabularu.txt не был создан.")
+    print("ОШИБКА\n"
+          "Файл \"rational_vocabularu.txt\" не был создан.")
     exit()

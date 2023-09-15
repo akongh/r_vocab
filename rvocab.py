@@ -31,6 +31,7 @@ for word in cleared_words:
         cnt = 1
 
 resulting_words.sort()
+resulting_words.reverse()
 
 for word in resulting_words:
     print(word)

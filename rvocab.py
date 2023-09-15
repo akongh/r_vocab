@@ -34,7 +34,7 @@ resulting_words.reverse()
 resulting_list = []
 
 for word in resulting_words:
-    resulting_list.append(str(word[0]) + " - " + word[1])
+    resulting_list.append(str(word[0]) + "  " + word[1])
 
 rational_vocabularu = "\n".join(resulting_list)
 rational_vocabularu = "Уникальных слов: " + str(len(resulting_words)) + "\n\n" + rational_vocabularu

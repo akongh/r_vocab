@@ -26,7 +26,7 @@ for word in cleared_words:
     if i_word == word:
         cnt += 1
     else:
-        resulting_words.append(str(cnt) + " - " + i_word)
+        resulting_words.append((cnt, i_word))
         i_word = word
         cnt = 1
 

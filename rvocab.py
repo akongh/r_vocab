@@ -44,17 +44,17 @@ for word in resulting_words:
 
 about_unique_words = "Уникальных слов: " + str(len(resulting_words)) + "."
 
-rational_vocabularu = "\n".join(resulting_list)
-rational_vocabularu = about_unique_words + "\n\n" + rational_vocabularu
+rvocab = "\n".join(resulting_list)
+rvocab = about_unique_words + "\n\n" + rvocab
 
-file = open("rational_vocabularu.txt", "w")
-file.write(rational_vocabularu)
+file = open("rvocab.txt", "w")
+file.write(rvocab)
 
-if os.path.exists('rational_vocabularu.txt'):
+if os.path.exists('rvocab.txt'):
     print("СДЕЛАНО\n"
-          "Файл \"rational_vocabularu.txt\" успешно создан.\n" +
+          "Файл \"rvocab.txt\" успешно создан.\n" +
           about_unique_words)
 else:
     print("ОШИБКА\n"
-          "Файл \"rational_vocabularu.txt\" не был создан.")
+          "Файл \"rvocab.txt\" не был создан.")
     exit()

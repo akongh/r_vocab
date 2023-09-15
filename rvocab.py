@@ -15,8 +15,6 @@ for word in words:
     if len(word) > 3:
         cleared_words.append(word)
 
-del words
-
 cleared_words.sort()
 cnt = 0
 resulting_words = []

@@ -31,7 +31,13 @@ for word in cleared_words:
 resulting_words.sort(key=lambda x: x[0])
 resulting_words.reverse()
 
-for word in resulting_words:
-    print(str(word[0]) + " - " + word[1])
+resulting_list = []
 
-print("Total words - " + str(len(resulting_words)))
+for word in resulting_words:
+    resulting_list.append(str(word[0]) + " - " + word[1])
+
+resulting_text = "\n".join(resulting_list)
+resulting_text = "Уникальных слов: " + str(len(resulting_words)) + "\n\n" + resulting_text
+
+file = open("rational_vocabularu.txt", "w")
+file.write(resulting_text)

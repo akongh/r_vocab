@@ -2,7 +2,7 @@ import re
 import os
 
 if not os.path.exists('text.txt'):
-    print("ОШИБКА: text.txt не найден.")
+    print("ОШИБКА\ntext.txt не найден.")
     exit()
 
 file = open("text.txt")
@@ -50,8 +50,8 @@ file = open("rational_vocabularu.txt", "w")
 file.write(rational_vocabularu)
 
 if os.path.exists('rational_vocabularu.txt'):
-    print("СДЕЛАНО: rational_vocabularu.txt успешно создан.")
+    print("СДЕЛАНО\nrational_vocabularu.txt успешно создан.")
     print(about_unique_words)
 else:
-    print("ОШИБКА: rational_vocabularu.txt не был создан.")
+    print("ОШИБКА\nrational_vocabularu.txt не был создан.")
     exit()

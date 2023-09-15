@@ -18,13 +18,19 @@ for word in words:
 del words
 
 cleared_words.sort()
+cnt = 0
+resulting_words = []
+i_word = cleared_words[0]
 
 for word in cleared_words:
+    if i_word == word:
+        cnt += 1
+    else:
+        resulting_words.append(str(cnt) + " - " + i_word)
+        i_word = word
+        cnt = 1
+
+resulting_words.sort()
+
+for word in resulting_words:
     print(word)
-
-# unique_words = []
-#
-# for word in cleared_words:
-#
-
-

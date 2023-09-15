@@ -30,7 +30,7 @@ for word in cleared_words:
         i_word = word
         cnt = 1
 
-resulting_words.sort()
+resulting_words.sort(key=lambda x: x[0])
 resulting_words.reverse()
 
 for word in resulting_words:

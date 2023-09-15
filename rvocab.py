@@ -35,3 +35,5 @@ resulting_words.reverse()
 
 for word in resulting_words:
     print(str(word[0]) + " - " + word[1])
+
+print("Total words - " + str(len(resulting_words)))

@@ -1,5 +1,5 @@
-import re
 import os
+import re
 
 if not os.path.exists('text.txt'):
     print("ОШИБКА\n"

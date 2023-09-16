@@ -42,9 +42,7 @@ for word in cleared_words:
 # Sorting words by repetitions number.
 resulting_words.sort(key=lambda x: x[0], reverse=True)
 
-# Maximum length of a string with the number of word repetitions.
-# It is necessary to calculate the number of spaces at the beginning of the
-# string for shorter numbers.
+#
 if len(str(resulting_words[0][0])) > 1:
     for_spaces = len(str(resulting_words[0][0]))
 else:
@@ -54,7 +52,9 @@ else:
 resulting_list = []
 for word in resulting_words:
     resulting_list.append(" " * (for_spaces - len(str(word[0]))) +
-                          str(word[0]) + "  " + word[1])
+                          str(word[0]) +
+                          "  "
+                          + word[1])
 
 # Making resulting content.
 about_unique_words = "    Unique words: " + str(len(resulting_words)) + "\n"

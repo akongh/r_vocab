@@ -50,7 +50,7 @@ for word in resulting_words:
 # Making resulting content
 about_unique_words = "    Unique words: " + str(len(resulting_words)) + ".\n"
 rvocab = "\n".join(resulting_list)
-rvocab = about_unique_words + "\n\n" + rvocab
+rvocab = about_unique_words.strip() + "\n\n" + rvocab
 
 # Writing resulting content to output file
 file = open("rvocab.txt", "w")

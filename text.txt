@@ -1,22 +1,29 @@
 ~!@#$%^&*()_+|{}:"<>?
 `-=\[];',./
 /*-+
+
 1234567890
+
 qwertyuiop
 asdfghjkl
 zxcvbnm
+
 QWERTYUIOP
 ASDFGHJKL
 ZXCVBNM
+
 ё
 йцукенгшщзхъ
 фывапролджэ
 ячсмитьбю
+
 "№;:?/,
+
 Ё
 ЙЦУКЕНГШЩЗХ
 ФЫВАПРОЛДЖЭ
 ЯЧСМИТЬБЮ
+
 .
 
 Python
@@ -24,4 +31,4 @@ Python
 Python
 Rational Vocabulary
 Rational Vocabulary
-rvocab
+rVocab

@@ -1,43 +1,735 @@
-~!@#$%^&*()_+|{}:"<>?
-`-=\[];',./
-/*-+
 
-1234567890
+Stack Overflow
 
-qwertyuiop
-asdfghjkl
-zxcvbnm
+    Products
 
-QWERTYUIOP
-ASDFGHJKL
-ZXCVBNM
+    sotrainee's user avatar
+    sotrainee
+        1 , 1 reputation
+        ●11 bronze badge
 
-ё
-йцукенгшщзхъ
-фывапролджэ
-ячсмитьбю
+    Home
+        Public
 
-"№;:?/,
+Questions
+Tags
+Users
+Companies
+Collectives
+Explore Collectives
+Labs
+Discussions
+Teams
 
-Ё
-ЙЦУКЕНГШЩЗХ
-ФЫВАПРОЛДЖЭ
-ЯЧСМИТЬБЮ
+    Create free Team
+    Looking for your Teams?
 
-.
+How to get first element in a list of tuples?
+Asked 11 years ago
+Modified 7 months ago
+Viewed 341k times
+235
 
-Python
-Python
-Python
-Python
-Python
-Python
-Python
-Python
-Python
-Python
-Python
-Python
-Rational Vocabulary
-Rational Vocabulary
-rVocab
+I have a list like below where the first element is the id and the other is a string:
+
+[(1, u'abc'), (2, u'def')]
+
+I want to create a list of ids only from this list of tuples as below:
+
+[1,2]
+
+I'll use this list in __in so it needs to be a list of integer values.
+
+    pythonlist
+
+Share
+Edit
+Follow
+edited May 24, 2018 at 9:31
+Mel's user avatar
+Mel
+5,8671010 gold badges3737 silver badges4242 bronze badges
+asked Aug 27, 2012 at 12:38
+wasimbhalli's user avatar
+wasimbhalli
+5,12288 gold badges4545 silver badges6363 bronze badges
+Add a comment
+17 Answers
+Sorted by:
+347
+
+>>> a = [(1, u'abc'), (2, u'def')]
+>>> [i[0] for i in a]
+[1, 2]
+
+Share
+Edit
+Follow
+edited Jan 22, 2018 at 10:09
+cs95's user avatar
+cs95
+381k9797 gold badges705705 silver badges747747 bronze badges
+answered Aug 27, 2012 at 13:25
+Rakesh's user avatar
+Rakesh
+81.5k1717 gold badges7676 silver badges114114 bronze badges
+Add a comment
+98
+
+Use the zip function to decouple elements:
+
+>>> inpt = [(1, u'abc'), (2, u'def')]
+>>> unzipped = zip(*inpt)
+>>> print unzipped
+[(1, 2), (u'abc', u'def')]
+>>> print list(unzipped[0])
+[1, 2]
+
+Edit (@BradSolomon): The above works for Python 2.x, where zip returns a list.
+
+In Python 3.x, zip returns an iterator and the following is equivalent to the above:
+
+>>> print(list(list(zip(*inpt))[0]))
+[1, 2]
+
+Share
+Edit
+Follow
+edited Dec 12, 2018 at 18:41
+Community's user avatar
+CommunityBot
+111 silver badge
+answered Jul 8, 2015 at 15:32
+WayneSan's user avatar
+WayneSan
+1,08977 silver badges33 bronze badges
+
+    does this need a separate import? –
+    JuliandotNut
+    Jul 12, 2015 at 9:13
+    2
+    @JuliandotNut No, it's a built-in function. (in Python 2.x) –
+    WayneSan
+    Jul 13, 2015 at 11:18
+    Why is the second cast to list necessary? –
+    Camilo Martinez M.
+    Jan 24, 2021 at 14:54
+    I know this wasn't the accepted answer, but this helped me immensely in the task I was just doing. Thanks for this! –
+    whege
+    Nov 15, 2021 at 18:49
+
+Add a comment
+27
+
+I was thinking that it might be useful to compare the runtimes of the different approaches so I made a benchmark (using simple_benchmark library)
+
+I) Benchmark having tuples with 2 elements enter image description here
+
+As you may expect to select the first element from tuples by index 0 shows to be the fastest solution very close to the unpacking solution by expecting exactly 2 values
+
+import operator
+import random
+
+from simple_benchmark import BenchmarkBuilder
+
+b = BenchmarkBuilder()
+
+
+
+@b.add_function()
+def rakesh_by_index(l):
+    return [i[0] for i in l]
+
+
+@b.add_function()
+def wayneSan_zip(l):
+    return list(list(zip(*l))[0])
+
+
+@b.add_function()
+def bcattle_itemgetter(l):
+     return list(map(operator.itemgetter(0), l))
+
+
+@b.add_function()
+def ssoler_upacking(l):
+    return [idx for idx, val in l]
+
+@b.add_function()
+def kederrack_unpacking(l):
+    return [f for f, *_ in l]
+
+
+
+@b.add_arguments('Number of tuples')
+def argument_provider():
+    for exp in range(2, 21):
+        size = 2**exp
+        yield size, [(random.choice(range(100)), random.choice(range(100))) for _ in range(size)]
+
+
+r = b.run()
+r.plot()
+
+II) Benchmark having tuples with 2 or more elements enter image description here
+
+import operator
+import random
+
+from simple_benchmark import BenchmarkBuilder
+
+b = BenchmarkBuilder()
+
+@b.add_function()
+def kederrack_unpacking(l):
+    return [f for f, *_ in l]
+
+
+@b.add_function()
+def rakesh_by_index(l):
+    return [i[0] for i in l]
+
+
+@b.add_function()
+def wayneSan_zip(l):
+    return list(list(zip(*l))[0])
+
+
+@b.add_function()
+def bcattle_itemgetter(l):
+     return list(map(operator.itemgetter(0), l))
+
+
+@b.add_arguments('Number of tuples')
+def argument_provider():
+    for exp in range(2, 21):
+        size = 2**exp
+        yield size, [tuple(random.choice(range(100)) for _
+                     in range(random.choice(range(2, 100)))) for _ in range(size)]
+
+from pylab import rcParams
+rcParams['figure.figsize'] = 12, 7
+
+r = b.run()
+r.plot()
+
+Share
+Edit
+Follow
+edited Feb 18, 2020 at 12:32
+answered Feb 18, 2020 at 12:25
+kederrac's user avatar
+kederrac
+16.8k66 gold badges3333 silver badges5555 bronze badges
+Add a comment
+24
+
+do you mean something like this?
+
+new_list = [ seq[0] for seq in yourlist ]
+
+What you actually have is a list of tuple objects, not a list of sets (as your original question implied). If it is actually a list of sets, then there is no first element because sets have no order.
+
+Here I've created a flat list because generally that seems more useful than creating a list of 1 element tuples. However, you can easily create a list of 1 element tuples by just replacing seq[0] with (seq[0],).
+Share
+Edit
+Follow
+edited Aug 27, 2012 at 12:52
+answered Aug 27, 2012 at 12:39
+mgilson's user avatar
+mgilson
+300k6565 gold badges635635 silver badges698698 bronze badges
+
+    I tried it. It gives this error: int() argument must be a string or a number, not 'QuerySet' –
+    wasimbhalli
+    Aug 27, 2012 at 12:50
+    4
+    @wasimbhalli -- int() is nowhere in my solution, so the exception you're seeing must come later on in the code. –
+    mgilson
+    Aug 27, 2012 at 12:51
+    I've updated the question, I need to use this list later in __in for filtering data –
+    wasimbhalli
+    Aug 27, 2012 at 12:53
+    what is __in? -- Based on the example input you've given, this will create a list of integers. However, if your list of tuples doesn't start with integers, then you won't get integers and you'll need to make them integers via int, or try to figure out why your first element can't be converted to an integer. –
+    mgilson
+    Aug 27, 2012 at 12:53
+
+Does new_list = [ seq[0] for seq in yourlist if type(seq[0]) == int] work? –
+pR0Ps
+Aug 27, 2012 at 12:54
+
+Show 3 more comments
+18
+
+This is what operator.itemgetter is for.
+
+>>> a = [(1, u'abc'), (2, u'def')]
+>>> import operator
+>>> b = map(operator.itemgetter(0), a)
+>>> b
+[1, 2]
+
+The itemgetter statement returns a function that returns the element at the index that you specify. It's exactly the same as writing
+
+>>> b = map(lambda x: x[0], a)
+
+But I find that itemgetter is a clearer and more explicit.
+
+This is handy for making compact sort statements. For example,
+
+>>> c = sorted(a, key=operator.itemgetter(0), reverse=True)
+>>> c
+[(2, u'def'), (1, u'abc')]
+
+Share
+Edit
+Follow
+edited Dec 4, 2021 at 16:08
+answered Jun 28, 2016 at 4:43
+bcattle's user avatar
+bcattle
+12.1k66 gold badges6262 silver badges8282 bronze badges
+Add a comment
+13
+
+You can use "tuple unpacking":
+
+>>> my_list = [(1, 'abc'), (2, 'def')]
+>>> my_ids = [idx for idx, val in my_list]
+>>> my_ids
+[1, 2]
+
+At iteration time each tuple is unpacked and its values are set to the variables idx and val.
+
+>>> x = (1, 'abc')
+>>> idx, val = x
+>>> idx
+1
+>>> val
+'abc'
+
+Share
+Edit
+Follow
+edited Oct 16, 2020 at 8:46
+answered Apr 3, 2017 at 13:12
+ssoler's user avatar
+ssoler
+4,89444 gold badges3333 silver badges3333 bronze badges
+Add a comment
+8
+
+From a performance point of view, in python3.X
+
+    [i[0] for i in a] and list(zip(*a))[0] are equivalent
+    they are faster than list(map(operator.itemgetter(0), a))
+
+Code
+
+import timeit
+
+
+iterations = 100000
+init_time = timeit.timeit('''a = [(i, u'abc') for i in range(1000)]''', number=iterations)/iterations
+print(timeit.timeit('''a = [(i, u'abc') for i in range(1000)]\nb = [i[0] for i in a]''', number=iterations)/iterations - init_time)
+print(timeit.timeit('''a = [(i, u'abc') for i in range(1000)]\nb = list(zip(*a))[0]''', number=iterations)/iterations - init_time)
+
+output
+
+3.491014136001468e-05
+
+3.422205176000717e-05
+Share
+Edit
+Follow
+answered Dec 30, 2017 at 23:54
+mxdbld's user avatar
+mxdbld
+16.9k55 gold badges3434 silver badges3737 bronze badges
+Add a comment
+8
+
+if the tuples are unique then this can work
+
+>>> a = [(1, u'abc'), (2, u'def')]
+>>> a
+[(1, u'abc'), (2, u'def')]
+>>> dict(a).keys()
+[1, 2]
+>>> dict(a).values()
+[u'abc', u'def']
+>>>
+
+Share
+Edit
+Follow
+answered Sep 29, 2015 at 14:36
+Jiri Semmler's user avatar
+Jiri Semmler
+41133 silver badges1111 bronze badges
+
+    4
+    This will lose the order. It may work with ordereddict, though. –
+    Tim Tisdall
+    Apr 15, 2016 at 12:45
+    if 2 or more tuples have the same first element than your solution will not work –
+    kederrac
+    Feb 18, 2020 at 20:33
+
+Add a comment
+5
+
+I'd prefer zipping this way:
+
+>>> lst = [(1, u'abc'), (2, u'def')]
+>>> new, _ = zip(*lst)
+>>> new
+(1, 2)
+>>>
+
+Or if you don't know how many extra values there are:
+
+>>> new, *_ = zip(*lst)
+>>> new
+(1, 2)
+>>>
+
+Share
+Edit
+Follow
+answered Nov 8, 2021 at 4:07
+U13-Forward's user avatar
+U13-Forward
+69.3k1414 gold badges9090 silver badges114114 bronze badges
+Add a comment
+4
+
+you can unpack your tuples and get only the first element using a list comprehension:
+
+l = [(1, u'abc'), (2, u'def')]
+[f for f, *_ in l]
+
+output:
+
+[1, 2]
+
+this will work no matter how many elements you have in a tuple:
+
+l = [(1, u'abc'), (2, u'def', 2, 4, 5, 6, 7)]
+[f for f, *_ in l]
+
+output:
+
+[1, 2]
+
+Share
+Edit
+Follow
+edited Feb 17, 2020 at 19:03
+answered Feb 17, 2020 at 18:57
+kederrac's user avatar
+kederrac
+16.8k66 gold badges3333 silver badges5555 bronze badges
+Add a comment
+4
+
+when I ran (as suggested above):
+
+>>> a = [(1, u'abc'), (2, u'def')]
+>>> import operator
+>>> b = map(operator.itemgetter(0), a)
+>>> b
+
+instead of returning:
+
+[1, 2]
+
+I received this as the return:
+
+<map at 0xb387eb8>
+
+I found I had to use list():
+
+>>> b = list(map(operator.itemgetter(0), a))
+
+to successfully return a list using this suggestion. That said, I'm happy with this solution, thanks. (tested/run using Spyder, iPython console, Python v3.6)
+Share
+Edit
+Follow
+answered Mar 20, 2017 at 5:46
+James's user avatar
+James
+67366 silver badges1919 bronze badges
+Add a comment
+2
+
+I wondered why nobody suggested to use numpy, but now after checking i understand. It is maybe not the best for mixed type arrays.
+
+This would be a solution in numpy:
+
+>>> import numpy as np
+
+>>> a = np.asarray([(1, u'abc'), (2, u'def')])
+>>> a[:, 0].astype(int).tolist()
+[1, 2]
+
+Share
+Edit
+Follow
+answered Apr 6, 2020 at 15:57
+CodePrinz's user avatar
+CodePrinz
+45555 silver badges88 bronze badges
+Add a comment
+1
+
+To get an element of a list or tuple you can iterate through a list or tuple
+
+a = [(1, u'abc'), (2, u'def')]
+
+list1 = [a[i][0] for i in range(len(a))]
+
+print(list1)
+
+Share
+Edit
+Follow
+edited Jun 16, 2021 at 12:14
+Willy satrio nugroho's user avatar
+Willy satrio nugroho
+90811 gold badge1616 silver badges2727 bronze badges
+answered Jun 16, 2021 at 4:47
+ajay's user avatar
+ajay
+3966 bronze badges
+
+    Iterating a list by iterating an index is very rarely used in Python because there's faster and clearer ways to go about it. Whenever you see it, challenge yourself to refactor without it. –
+    Guy Gangemi
+    Mar 22 at 23:15
+
+Add a comment
+0
+
+Solution using list comprehension.
+
+og_list = [(1, u'abc'), (2, u'def')]
+list_of_keys = [key for key, _ in og_list]
+
+output
+
+[1,2]
+
+Share
+Edit
+Follow
+edited Feb 11 at 1:06
+answered Feb 11 at 1:05
+Tayo Amuneke's user avatar
+Tayo Amuneke
+133 bronze badges
+Add a comment
+0
+
+If you need to convert to a nested of the list, the answer will be:
+
+a = [(1, u'abc'), (2, u'def')]
+print([list(i[0]) for i in a])
+
+output:
+
+[[1], [2]]
+
+Share
+Edit
+Follow
+edited Mar 25, 2022 at 8:53
+vvvvv's user avatar
+vvvvv
+25.6k1919 gold badges4949 silver badges8181 bronze badges
+answered Mar 22, 2022 at 17:38
+Thaeer M Sahib's user avatar
+Thaeer M Sahib
+3577 bronze badges
+Add a comment
+0
+
+Those are tuples, not sets. You can do this:
+
+l1 = [(1, u'abc'), (2, u'def')]
+l2 = [(tup[0],) for tup in l1]
+l2
+>>> [(1,), (2,)]
+
+Share
+Edit
+Follow
+answered Aug 27, 2012 at 12:40
+Lanaru's user avatar
+Lanaru
+9,43177 gold badges3939 silver badges6464 bronze badges
+
+    2
+    Not really what is being asked –
+    Mad Physicist
+    Sep 8, 2014 at 23:44
+
+Add a comment
+-1
+
+another simple suggestion if you need to convert to a nested of the tuple, and all elements inside the list the answer will be:
+
+s=[]
+for i in range(len(a)):
+    s.append(a[i][0])
+print(s)
+
+Output:
+
+[(1),(2)]
+
+Share
+Edit
+Follow
+edited Mar 23, 2022 at 8:41
+answered Mar 23, 2022 at 8:33
+Thaeer M Sahib's user avatar
+Thaeer M Sahib
+3577 bronze badges
+Add a comment
+Your Answer
+
+    Links Images Styling/Headers Lists Blockquotes Code HTML Tables
+    Advanced help
+
+Not the answer you're looking for? Browse other questions tagged
+
+    pythonlist
+
+or ask your own question.
+
+    The Overflow Blog
+
+What we talk about when we talk about imposter syndrome
+
+    Multiplayer programming on mobile: a chat with Replit CEO Amjad Masad
+    Featured on Meta
+    Sunsetting Winter/Summer Bash: Rationale and Next Steps
+    Expanding Discussions: Let's talk about flag reasons
+    Collectives Updates to the Community Bulletin in the Right Sidebar
+    Temporary policy: Generative AI (e.g., ChatGPT) is banned
+    OverflowAI Search is now available for alpha testing (September 13, 2023)
+
+Linked
+156
+Get the first element of each tuple in a list in Python
+6
+How to extract first items from a list of tuples
+3
+How to iterate through a list of tuples in Python?
+2
+Extracting first elements from a list of tuples using list comprehension
+-1
+How can I print the first name?
+-1
+Iterating through a tuple of tuples
+-1
+How to check for the first number inside a tuple inside a list?
+-3
+How to extract 1st element from list of tuples in Python
+0
+Splitting a list of tuples and converting datatype
+-1
+Editing items in a list pandas
+See more linked questions
+Related
+37
+python - get list of tuples first index?
+4
+Referring to the first element of all tuples in a list of tuples
+2
+how to get first element of tuples with matching second element (python)
+2
+How to get first item of each tuple in a list / python
+0
+how to extract the first element of each tuple in each sublist?
+1
+Find first element in list of pairs of tuples
+0
+Get all first element of tuples from list of lists of tuples in Python
+0
+python - extract first element from tuple
+0
+Accessing first element of a tuple in a list of tuples, in a list - python
+0
+How to remove the first element from a list of tuples?
+Hot Network Questions
+
+    Is "I gave a hundred dollars to my father, and she did so to her father" grammatical?
+    Does Customs still check anyone?
+    Does low tire pressure effect safe, minimum tire clearance?
+    Function to replace values of elements of matrix with 0 unless the value is -1
+    How to find the amount of binary sequences with at least one "0" in the middle of 2 "1"?
+    Is it safe to become separated from your passport in a foreign country?
+    Are integer linear *feasibility* problems NP-hard?
+    Expected value and variance of median
+    What's the purpose of своё in this sentence?
+    Similar working paper by senior professors, should I worry?
+    Is the global temperature of the earth a physical quantity at all?
+    How to fit a parabola to 2D data points?
+    How to make this script run in the background?
+    How to add 3/4" hardwood flooring to stairs that have stair nose?
+    A Simple Tetris game made with C++ and ncurses
+    Is 𝐴 ∩ 𝒫(𝐴) = ∅ true for A = { 1 } ? Or is 𝐴 ∩ 𝒫(𝐴) = { 1 } ? (Set Theory)
+    Matrices inside a matrix, with only text in the inner matrices
+    How do people of the opposite side see the Moon and the Sun?
+    What is the AoE of Acid Splash?
+    Can I use multiple linear regression with binary output?
+    Theoretical attack on the network by companies
+    Are there any uses for shors algorithm other than breaking public key cryptography
+    Why do some, but not all, 100% Free Software distros rebrand Firefox?
+    Getting a copy of LaTeX source code for a textbook
+
+Question feed
+
+Stack Overflow
+
+    Questions
+    Help
+
+Products
+
+    Teams
+    Advertising
+    Collectives
+    Talent
+
+Company
+
+    About
+    Press
+    Work Here
+    Legal
+    Privacy Policy
+    Terms of Service
+    Contact Us
+    Cookie Settings
+    Cookie Policy
+
+Stack Exchange Network
+
+    Technology
+    Culture & recreation
+    Life & arts
+    Science
+    Professional
+    Business
+    API
+    Data
+
+    Blog
+    Facebook
+    Twitter
+    LinkedIn
+    Instagram
+
+Site design / logo © 2023 Stack Exchange Inc; user contributions licensed under CC BY-SA. rev 2023.9.15.43631

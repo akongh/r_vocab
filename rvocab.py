@@ -2,8 +2,8 @@ import os
 import re
 
 if not os.path.exists('text.txt'):
-    print("ОШИБКА\n"
-          "Файл \"text.txt\" не найден.")
+    print("ERROR\n"
+          "File \"text.txt\" not found.")
     exit()
 
 file = open("text.txt")
@@ -42,7 +42,7 @@ resulting_list = []
 for word in resulting_words:
     resulting_list.append(str(word[0]) + "  " + word[1])
 
-about_unique_words = "Уникальных слов: " + str(len(resulting_words)) + "."
+about_unique_words = "Unique words: " + str(len(resulting_words)) + "."
 
 rvocab = "\n".join(resulting_list)
 rvocab = about_unique_words + "\n\n" + rvocab
@@ -51,10 +51,10 @@ file = open("rvocab.txt", "w")
 file.write(rvocab)
 
 if os.path.exists('rvocab.txt'):
-    print("СДЕЛАНО\n"
-          "Файл \"rvocab.txt\" успешно создан.\n" +
+    print("DONE\n"
+          "File \"rvocab.txt\" successfully created.\n" +
           about_unique_words)
 else:
-    print("ОШИБКА\n"
-          "Файл \"rvocab.txt\" не был создан.")
+    print("ERROR\n"
+          "File \"rvocab.txt\" was not created.")
     exit()

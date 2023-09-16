@@ -34,8 +34,7 @@ for word in cleared_words:
         i_word = word
         cnt = 1
 
-resulting_words.sort(key=lambda x: x[0])
-resulting_words.reverse()
+resulting_words.sort(key=lambda x: x[0], reverse=True)
 
 resulting_list = []
 

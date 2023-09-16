@@ -10,7 +10,7 @@ file = open("text.txt")
 words = file.read().lower()
 file.close()
 
-words = re.sub("[\\W\\d_]", " ", words)
+words = re.sub("[^a-zA-Z]", " ", words)
 words = re.sub(" {2,}", " ", words)
 words = words.strip()
 

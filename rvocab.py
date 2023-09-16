@@ -3,8 +3,8 @@ import re
 
 # Geting content
 if not os.path.exists('text.txt'):
-    print("ERROR\n"
-          "File \"text.txt\" not found.")
+    print("\n    ERROR\n"
+          "    File \"text.txt\" not found.\n")
     exit()
 file = open("text.txt")
 words = file.read().lower()
@@ -48,7 +48,7 @@ for word in resulting_words:
     resulting_list.append(str(word[0]) + "  " + word[1])
 
 # Making resulting content
-about_unique_words = "Unique words: " + str(len(resulting_words)) + "."
+about_unique_words = "    Unique words: " + str(len(resulting_words)) + ".\n"
 rvocab = "\n".join(resulting_list)
 rvocab = about_unique_words + "\n\n" + rvocab
 
@@ -56,10 +56,10 @@ rvocab = about_unique_words + "\n\n" + rvocab
 file = open("rvocab.txt", "w")
 file.write(rvocab)
 if os.path.exists('rvocab.txt'):
-    print("DONE\n"
-          "File \"rvocab.txt\" successfully created.\n" +
+    print("\n    DONE\n"
+          "    File \"rvocab.txt\" successfully created.\n" +
           about_unique_words)
 else:
-    print("ERROR\n"
-          "File \"rvocab.txt\" was not created.")
+    print("\n    ERROR\n"
+          "    File \"rvocab.txt\" was not created.\n")
     exit()

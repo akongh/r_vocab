@@ -14,7 +14,7 @@ words = re.sub("[^a-zA-Z]", " ", words)
 words = re.sub(" {2,}", " ", words)
 words = words.strip()
 
-words = words.split(" ")
+words = words.split()
 cleared_words = []
 
 for word in words:

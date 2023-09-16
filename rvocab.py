@@ -42,10 +42,19 @@ for word in cleared_words:
 # Sorting words by repetitions number.
 resulting_words.sort(key=lambda x: x[0], reverse=True)
 
+#
+if len(str(resulting_words[0][0])) > 1:
+    for_spaces = len(str(resulting_words[0][0]))
+else:
+    for_spaces = 1
+
 # Tuples to strings.
 resulting_list = []
 for word in resulting_words:
-    resulting_list.append(str(word[0]) + "  " + word[1])
+    resulting_list.append(" " * (for_spaces - len(str(word[0]))) +
+                          str(word[0]) +
+                          "  "
+                          + word[1])
 
 # Making resulting content.
 about_unique_words = "    Unique words: " + str(len(resulting_words)) + "\n"

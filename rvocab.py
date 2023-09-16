@@ -48,7 +48,7 @@ for word in resulting_words:
     resulting_list.append(str(word[0]) + "  " + word[1])
 
 # Making resulting content.
-about_unique_words = "    Unique words: " + str(len(resulting_words)) + ".\n"
+about_unique_words = "    Unique words: " + str(len(resulting_words)) + "\n"
 rvocab = "\n".join(resulting_list)
 rvocab = about_unique_words.strip() + "\n\n" + rvocab
 

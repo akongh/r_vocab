@@ -42,7 +42,7 @@ for word in cleared_words:
 # Sorting words by repetitions number.
 resulting_words.sort(key=lambda x: x[0], reverse=True)
 
-# Tuples into strings.
+# Tuples to strings.
 resulting_list = []
 for word in resulting_words:
     resulting_list.append(str(word[0]) + "  " + word[1])

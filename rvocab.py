@@ -1,7 +1,7 @@
 import os
 import re
 
-# Geting content.
+# Getting content.
 if not os.path.exists('text.txt'):
     print("\n    ERROR\n"
           "    File \"text.txt\" not found.\n")

@@ -8,9 +8,14 @@ fn main() {
     file.read_to_string(&mut content)
         .expect("<!> Can't read the file!");
 
-    let re = Regex::new(r"[^A-Za-z]").unwrap();
+    let re1 = Regex::new(r"[^A-Za-z]").unwrap();
+    let re2 = Regex::new(r" {2}").unwrap();
+
     let mut file = File::create("src/r_vocab.txt").expect("<!> Can't create file!");
 
-    file.write_all(re.replace_all(&mut content, "\n").as_bytes())
-        .expect("<!> Can't write file!");
+    let mut result1 = re1.replace_all(&mut content, " ").to_string();
+    let result2 = re2.replace_all(&mut result1, " ").to_string();
+    let result = result2.trim().as_bytes();
+
+    file.write_all(result).expect("<!> Can't write file!");
 }

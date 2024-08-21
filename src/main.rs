@@ -9,7 +9,7 @@ fn main() {
         .expect("<!> Can't read the file!");
 
     let re1 = Regex::new(r"[^A-Za-z]").unwrap();
-    let re2 = Regex::new(r" {2}").unwrap();
+    let re2 = Regex::new(r" {2,}").unwrap();
 
     let mut file = File::create("src/r_vocab.txt").expect("<!> Can't create file!");
 

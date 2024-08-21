@@ -9,10 +9,8 @@ fn main() {
         .expect("<!> Can't read the file!");
 
     let re = Regex::new(r"[^A-Za-z]").unwrap();
-    let result = re.replace_all(&mut content, "\n");
-
     let mut file = File::create("src/r_vocab.txt").expect("<!> Can't create file!");
 
-    file.write_all(result.as_bytes())
+    file.write_all(re.replace_all(&mut content, "\n").as_bytes())
         .expect("<!> Can't write file!");
 }

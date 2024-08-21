@@ -15,7 +15,15 @@ fn main() {
 
     let mut result1 = re1.replace_all(&mut content, " ").to_string();
     let result2 = re2.replace_all(&mut result1, " ").to_string();
-    let result = result2.trim().as_bytes();
+    let result3 = result2.trim().to_string();
 
-    file.write_all(result).expect("<!> Can't write file!");
+    let result4: Vec<String> = result3
+        .split(" ")
+        .map(|s| s.to_string().to_lowercase())
+        .collect();
+
+    let result5 = result4.join("\n");
+
+    file.write_all(result5.as_bytes())
+        .expect("<!> Can't write file!");
 }

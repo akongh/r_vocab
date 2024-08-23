@@ -21,6 +21,8 @@ fn main() {
         .map(|s| s.to_string().to_lowercase())
         .collect();
 
+    //todo: main logic
+
     let r_vocab = raw_vocab_vec.join("\n");
 
     file.write_all(r_vocab.as_bytes())

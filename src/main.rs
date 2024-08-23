@@ -16,12 +16,12 @@ fn main() {
     raw_vocab = re1.replace_all(&mut raw_vocab, " ").to_string();
     raw_vocab = re2.replace_all(&mut raw_vocab, " ").trim().to_string();
 
-    let result4: Vec<String> = raw_vocab
+    let raw_vocab_vec: Vec<String> = raw_vocab
         .split(" ")
         .map(|s| s.to_string().to_lowercase())
         .collect();
 
-    let r_vocab = result4.join("\n");
+    let r_vocab = raw_vocab_vec.join("\n");
 
     file.write_all(r_vocab.as_bytes())
         .expect("<!> Can't write file!");

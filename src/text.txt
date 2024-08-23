@@ -26,18 +26,11 @@ ZXCVBNM
 
 .
 
-Python
-Python
-Python
-Python
-Python
-Python
-Python
-Python
-Python
-Python
-Python
-Python
+Rust
+Rust
+Rust
+Rust
+
 Rational Vocabulary
 Rational Vocabulary
-rVocab
+r_vocab

@@ -1,8 +1,0 @@
-Unique words: 6
-
-12  python
- 2  asdfghjkl
- 2  qwertyuiop
- 2  rational
- 2  vocabulary
- 1  rvocab

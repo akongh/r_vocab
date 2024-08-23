@@ -1,6 +1,8 @@
 use regex::Regex;
 use std::fs::File;
 use std::io::prelude::*;
+
+//todo: add comments
 fn main() {
     let mut file = File::open("src/text.txt").expect("<!> Can't open file!");
     let mut raw_vocab = String::new();

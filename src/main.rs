@@ -13,11 +13,10 @@ fn main() {
 
     let mut file = File::create("src/r_vocab.txt").expect("<!> Can't create file!");
 
-    let mut result1 = re1.replace_all(&mut content, " ").to_string();
-    let result2 = re2.replace_all(&mut result1, " ").to_string();
-    let result3 = result2.trim().to_string();
+    content = re1.replace_all(&mut content, " ").to_string();
+    content = re2.replace_all(&mut content, " ").trim().to_string();
 
-    let result4: Vec<String> = result3
+    let result4: Vec<String> = content
         .split(" ")
         .map(|s| s.to_string().to_lowercase())
         .collect();

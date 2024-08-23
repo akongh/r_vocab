@@ -21,8 +21,8 @@ fn main() {
         .map(|s| s.to_string().to_lowercase())
         .collect();
 
-    let result5 = result4.join("\n");
+    let r_vocab = result4.join("\n");
 
-    file.write_all(result5.as_bytes())
+    file.write_all(r_vocab.as_bytes())
         .expect("<!> Can't write file!");
 }

@@ -40,6 +40,7 @@ fn main() {
         }
     }
 
+    //todo: sorting must be like numbers, not like rows
     r_vocab_vec.sort();
     r_vocab_vec.reverse();
 

@@ -18,10 +18,11 @@ fn main() {
     raw_vocab = re1.replace_all(&mut raw_vocab, " ").to_string();
     raw_vocab = re2.replace_all(&mut raw_vocab, " ").trim().to_string();
 
-    let raw_vocab_vec: Vec<String> = raw_vocab
+    let mut raw_vocab_vec: Vec<String> = raw_vocab
         .split(" ")
         .map(|s| s.to_string().to_lowercase())
         .collect();
+    raw_vocab_vec.sort();
 
     //todo: main logic
 

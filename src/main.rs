@@ -1,7 +1,6 @@
 use regex::Regex;
 use std::fs::File;
 use std::io::prelude::*;
-
 //todo: add comments
 fn main() {
     let mut file = File::open("src/text.txt").expect("<!> Can't open file!");
@@ -12,7 +11,6 @@ fn main() {
 
     let re1 = Regex::new(r"[^A-Za-z]").unwrap();
     let re2 = Regex::new(r" {2,}").unwrap();
-
     let mut file = File::create("src/r_vocab.txt").expect("<!> Can't create file!");
 
     raw_vocab = re1.replace_all(&mut raw_vocab, " ").to_string();
@@ -22,6 +20,7 @@ fn main() {
         .split(" ")
         .map(|s| s.to_string().to_lowercase())
         .collect();
+
     raw_vocab_vec.sort();
 
     //main logic start

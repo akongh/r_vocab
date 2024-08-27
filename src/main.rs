@@ -2,7 +2,9 @@ use regex::Regex;
 use std::fs::File;
 use std::io::prelude::*;
 //todo: add comments
+//todo: add tests
 fn main() {
+    //todo: "r_vocab" must search for a "text.txt" at its own level
     let mut file = File::open("src/text.txt").expect("<!> Can't open file!");
     let mut raw_vocab = String::new();
 
@@ -11,7 +13,6 @@ fn main() {
 
     let re1 = Regex::new(r"[^A-Za-z]").unwrap();
     let re2 = Regex::new(r" {2,}").unwrap();
-    let mut file = File::create("src/r_vocab.txt").expect("<!> Can't create file!");
 
     raw_vocab = re1.replace_all(&mut raw_vocab, " ").to_string();
     raw_vocab = re2.replace_all(&mut raw_vocab, " ").trim().to_string();
@@ -45,6 +46,8 @@ fn main() {
     //main logic end
 
     let r_vocab = r_vocab_vec.join("\n");
+    //todo: "r_vocab" must create "r_vocab.txt" at its own level
+    let mut file = File::create("src/r_vocab.txt").expect("<!> Can't create file!");
 
     file.write_all(r_vocab.as_bytes())
         .expect("<!> Can't write file!");

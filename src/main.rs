@@ -24,9 +24,28 @@ fn main() {
         .collect();
     raw_vocab_vec.sort();
 
-    //todo: main logic
+    //main logic start
 
-    let r_vocab = raw_vocab_vec.join("\n");
+    let mut count = 0;
+    let mut word = raw_vocab_vec.get(0).unwrap().to_string();
+    let mut r_vocab_vec = vec![];
+
+    for el in raw_vocab_vec {
+        if word == el {
+            count += 1;
+        } else {
+            r_vocab_vec.push(format!("{count}  {word}"));
+            word = el;
+            count = 1
+        }
+    }
+
+    r_vocab_vec.sort();
+    r_vocab_vec.reverse();
+
+    //main logic end
+
+    let r_vocab = r_vocab_vec.join("\n");
 
     file.write_all(r_vocab.as_bytes())
         .expect("<!> Can't write file!");

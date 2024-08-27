@@ -1,16 +1,7 @@
-asdfghjkl
-asdfghjkl
-qwertyuiop
-qwertyuiop
-r
-rational
-rational
-rust
-rust
-rust
-rust
-vocab
-vocabulary
-vocabulary
-zxcvbnm
-zxcvbnm
+4  rust
+2  vocabulary
+2  rational
+2  qwertyuiop
+2  asdfghjkl
+1  vocab
+1  r

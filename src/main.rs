@@ -27,24 +27,30 @@ fn main() {
 
     raw_vocab_vec.sort();
 
+    let mut raw_vocab_vec_clear = vec![];
+
+    for el in raw_vocab_vec {
+        if el.len() > 3 {
+            raw_vocab_vec_clear.push(el);
+        }
+    }
+
     println!("> The source text has been cleared.");
 
     //main logic start
 
     let mut count = 0;
-    let mut word = raw_vocab_vec.get(0).unwrap().to_string();
+    let mut word = raw_vocab_vec_clear.get(0).unwrap().to_string();
     let mut r_vocab_vec = vec![];
 
-    for el in raw_vocab_vec {
-        if el.len() > 3 {
-            if word == el {
-                count += 1;
-            } else {
-                let count_word = (count, word);
-                r_vocab_vec.push(count_word);
-                word = el;
-                count = 1
-            }
+    for el in raw_vocab_vec_clear {
+        if word == el {
+            count += 1;
+        } else {
+            let count_word = (count, word);
+            r_vocab_vec.push(count_word);
+            word = el;
+            count = 1
         }
     }
 

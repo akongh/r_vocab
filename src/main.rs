@@ -10,6 +10,8 @@ fn main() {
     file.read_to_string(&mut raw_vocab)
         .expect(">>>>>>>> Can't read the file!\n");
 
+    println!("The source text has been received.");
+
     let re1 = Regex::new(r"[^A-Za-z]").unwrap();
     let re2 = Regex::new(r" {2,}").unwrap();
 
@@ -22,6 +24,8 @@ fn main() {
         .collect();
 
     raw_vocab_vec.sort();
+
+    println!("The source text has been cleared.");
 
     //main logic start
 
@@ -51,6 +55,8 @@ fn main() {
         r_vocab_vec_string.push(format!("{el0}  {el1}"));
     }
 
+    println!("The vocabulary has been created.");
+
     //main logic end
 
     let r_vocab = r_vocab_vec_string.join("\n");
@@ -58,4 +64,6 @@ fn main() {
 
     file.write_all(r_vocab.as_bytes())
         .expect(">>>>>>>> Can't write file!\n");
+
+    println!("The vocabulary is written to a file.");
 }

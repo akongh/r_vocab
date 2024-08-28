@@ -5,7 +5,7 @@ use std::io::prelude::*;
 //todo: add tests
 fn main() {
     //todo: "r_vocab" must search for a "text.txt" at its own level
-    let mut file = File::open("src/text.txt").expect("<!> Can't open file!\n");
+    let mut file = File::open("text.txt").expect("<!> Can't open file!\n");
     let mut raw_vocab = String::new();
 
     file.read_to_string(&mut raw_vocab)
@@ -56,7 +56,7 @@ fn main() {
 
     let r_vocab = r_vocab_vec_string.join("\n");
     //todo: "r_vocab" must create "r_vocab.txt" at its own level
-    let mut file = File::create("src/r_vocab.txt").expect("<!> Can't create file!\n");
+    let mut file = File::create("r_vocab.txt").expect("<!> Can't create file!\n");
 
     file.write_all(r_vocab.as_bytes())
         .expect("<!> Can't write file!\n");

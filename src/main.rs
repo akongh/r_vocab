@@ -1,7 +1,9 @@
 use regex::Regex;
 use std::fs::File;
 use std::io::prelude::*;
+use std::io::Write;
 use std::time::Instant;
+use termcolor::*;
 //todo: add comments
 //todo: add tests
 fn main() {

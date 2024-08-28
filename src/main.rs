@@ -10,7 +10,7 @@ fn main() {
     file.read_to_string(&mut raw_vocab)
         .expect(">>>>>>>> Can't read the file!\n");
 
-    println!("The source text has been received.");
+    println!("The source text was obtained from a file.");
 
     let re1 = Regex::new(r"[^A-Za-z]").unwrap();
     let re2 = Regex::new(r" {2,}").unwrap();

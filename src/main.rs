@@ -34,19 +34,27 @@ fn main() {
         if word == el {
             count += 1;
         } else {
-            r_vocab_vec.push(format!("{count}  {word}"));
+            let count_word = (count, word);
+            r_vocab_vec.push(count_word);
             word = el;
             count = 1
         }
     }
 
-    //todo: sorting must be like numbers, not like rows
-    r_vocab_vec.sort();
-    r_vocab_vec.reverse();
+    r_vocab_vec.sort_by(|a, b| b.0.cmp(&a.0));
+
+    let mut r_vocab_vec_string = vec![];
+
+    for el in r_vocab_vec {
+        // format!("{count}  {word}")
+        let el0 = el.0.to_string();
+        let el1 = el.1;
+        r_vocab_vec_string.push(format!("{el0}  {el1}"));
+    }
 
     //main logic end
 
-    let r_vocab = r_vocab_vec.join("\n");
+    let r_vocab = r_vocab_vec_string.join("\n");
     //todo: "r_vocab" must create "r_vocab.txt" at its own level
     let mut file = File::create("src/r_vocab.txt").expect("<!> Can't create file!");
 

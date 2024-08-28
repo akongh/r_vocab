@@ -1,7 +1,7 @@
 4  rust
-2  vocabulary
-2  rational
-2  qwertyuiop
 2  asdfghjkl
-1  vocab
+2  qwertyuiop
+2  rational
+2  vocabulary
 1  r
+1  vocab

@@ -34,7 +34,7 @@ fn main() {
     let mut r_vocab_vec = vec![];
 
     for el in raw_vocab_vec {
-        if el.len() > 2 {
+        if el.len() > 3 {
             if word == el {
                 count += 1;
             } else {

@@ -10,7 +10,7 @@ fn main() {
     file.read_to_string(&mut raw_vocab)
         .expect(">>>>>>>> Can't read the file!\n");
 
-    println!("The source text was obtained from a file.");
+    println!("The source text has been obtained from a file.");
 
     let re1 = Regex::new(r"[^A-Za-z]").unwrap();
     let re2 = Regex::new(r" {2,}").unwrap();
@@ -65,6 +65,6 @@ fn main() {
     file.write_all(r_vocab.as_bytes())
         .expect(">>>>>>>> Can't write file!\n");
 
-    println!("The vocabulary is written to a file.");
+    println!("The vocabulary has been written in a file.");
     println!("Done!");
 }

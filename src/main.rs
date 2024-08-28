@@ -51,7 +51,6 @@ fn main() {
     let mut r_vocab_vec_string = vec![];
 
     for el in r_vocab_vec {
-        // format!("{count}  {word}")
         let el0 = el.0.to_string();
         let el1 = el.1;
         r_vocab_vec_string.push(format!("{el0}  {el1}"));

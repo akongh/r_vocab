@@ -1,16 +1,18 @@
 use regex::Regex;
 use std::fs::File;
 use std::io::prelude::*;
+use std::time::Instant;
 //todo: add comments
 //todo: add tests
 fn main() {
+    let now = Instant::now();
     let mut file = File::open("text.txt").expect(">>>>>>>> Can't open file!\n");
     let mut raw_vocab = String::new();
 
     file.read_to_string(&mut raw_vocab)
         .expect(">>>>>>>> Can't read the file!\n");
 
-    println!("The source text has been obtained from a file.");
+    println!("> The source text has been obtained from a file.");
 
     let re1 = Regex::new(r"[^A-Za-z]").unwrap();
     let re2 = Regex::new(r" {2,}").unwrap();
@@ -25,7 +27,7 @@ fn main() {
 
     raw_vocab_vec.sort();
 
-    println!("The source text has been cleared.");
+    println!("> The source text has been cleared.");
 
     //main logic start
 
@@ -56,7 +58,7 @@ fn main() {
         r_vocab_vec_string.push(format!("{el0}  {el1}"));
     }
 
-    println!("The vocabulary has been created.");
+    println!("> The vocabulary has been created.");
 
     //main logic end
 
@@ -73,6 +75,10 @@ fn main() {
     file.write_all(r_vocab.as_bytes())
         .expect(">>>>>>>> Can't write file!\n");
 
-    println!("The vocabulary has been written in a file.");
-    println!("Done!\n");
+    println!("> The vocabulary has been written in a file.");
+
+    let elapsed = now.elapsed();
+
+    println!("> DONE!");
+    println!("Total time: {:.2?}", elapsed)
 }

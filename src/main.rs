@@ -34,13 +34,15 @@ fn main() {
     let mut r_vocab_vec = vec![];
 
     for el in raw_vocab_vec {
-        if word == el {
-            count += 1;
-        } else {
-            let count_word = (count, word);
-            r_vocab_vec.push(count_word);
-            word = el;
-            count = 1
+        if el.len() > 2 {
+            if word == el {
+                count += 1;
+            } else {
+                let count_word = (count, word);
+                r_vocab_vec.push(count_word);
+                word = el;
+                count = 1
+            }
         }
     }
 

@@ -3,5 +3,4 @@
 2  qwertyuiop
 2  rational
 2  vocabulary
-1  r
 1  vocab

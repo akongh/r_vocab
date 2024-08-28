@@ -1,11 +1,12 @@
 use regex::Regex;
 use std::fs::File;
 use std::io::prelude::*;
-use std::io::Write;
+// use std::io::Write;
 use std::time::Instant;
-use termcolor::*;
+// use termcolor::*;
 //todo: add comments
 //todo: add tests
+//todo: add colors for console text
 fn main() {
     let now = Instant::now();
     let mut file = File::open("text.txt").expect(">>>>>>>> Can't open file!\n");

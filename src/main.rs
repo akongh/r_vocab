@@ -4,11 +4,11 @@ use std::io::prelude::*;
 //todo: add comments
 //todo: add tests
 fn main() {
-    let mut file = File::open("text.txt").expect("<!> Can't open file!\n");
+    let mut file = File::open("text.txt").expect(">>>>>>>> Can't open file!\n");
     let mut raw_vocab = String::new();
 
     file.read_to_string(&mut raw_vocab)
-        .expect("<!> Can't read the file!\n");
+        .expect(">>>>>>>> Can't read the file!\n");
 
     let re1 = Regex::new(r"[^A-Za-z]").unwrap();
     let re2 = Regex::new(r" {2,}").unwrap();
@@ -54,8 +54,8 @@ fn main() {
     //main logic end
 
     let r_vocab = r_vocab_vec_string.join("\n");
-    let mut file = File::create("r_vocab.txt").expect("<!> Can't create file!\n");
+    let mut file = File::create("r_vocab.txt").expect(">>>>>>>> Can't create file!\n");
 
     file.write_all(r_vocab.as_bytes())
-        .expect("<!> Can't write file!\n");
+        .expect(">>>>>>>> Can't write file!\n");
 }

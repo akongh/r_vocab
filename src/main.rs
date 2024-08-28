@@ -66,4 +66,5 @@ fn main() {
         .expect(">>>>>>>> Can't write file!\n");
 
     println!("The vocabulary is written to a file.");
+    println!("Done!");
 }

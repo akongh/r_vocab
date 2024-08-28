@@ -60,7 +60,14 @@ fn main() {
 
     //main logic end
 
-    let r_vocab = r_vocab_vec_string.join("\n");
+    let count = r_vocab_vec_string.len();
+    let title = "Total unique words: ".to_string() + &count.to_string() + "\n";
+    let mut r_vocab_vec_full = vec![];
+
+    r_vocab_vec_full.push(title);
+    r_vocab_vec_full.append(&mut r_vocab_vec_string);
+
+    let r_vocab = r_vocab_vec_full.join("\n");
     let mut file = File::create("r_vocab.txt").expect(">>>>>>>> Can't create file!\n");
 
     file.write_all(r_vocab.as_bytes())

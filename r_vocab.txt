@@ -1,3 +1,5 @@
+Total unique words: 6
+
 4  rust
 2  asdfghjkl
 2  qwertyuiop

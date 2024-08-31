@@ -7,17 +7,15 @@ use std::time::Instant;
 //todo: add colors for console text
 fn main() {
     let now = Instant::now();
+
     let mut file = File::open("text.txt").expect(">>>>>>>> Can't open file!\n");
     let mut raw_vocab = String::new();
-
     file.read_to_string(&mut raw_vocab)
         .expect(">>>>>>>> Can't read the file!\n");
-
     println!("> The source text has been obtained from a file.");
 
     let re1 = Regex::new(r"[^A-Za-z]").unwrap();
     let re2 = Regex::new(r" {2,}").unwrap();
-
     raw_vocab = re1.replace_all(&mut raw_vocab, " ").to_string();
     raw_vocab = re2.replace_all(&mut raw_vocab, " ").trim().to_string();
 
@@ -29,13 +27,11 @@ fn main() {
     raw_vocab_vec.sort();
 
     let mut raw_vocab_vec_clear = vec![];
-
     for el in raw_vocab_vec {
         if el.len() > 3 {
             raw_vocab_vec_clear.push(el);
         }
     }
-
     println!("> The source text has been cleared.");
 
     //main logic start
@@ -43,7 +39,6 @@ fn main() {
     let mut count = 0;
     let mut word = raw_vocab_vec_clear.get(0).unwrap().to_string();
     let mut r_vocab_vec = vec![];
-
     for el in raw_vocab_vec_clear {
         if word == el {
             count += 1;
@@ -58,13 +53,11 @@ fn main() {
     r_vocab_vec.sort_by(|a, b| b.0.cmp(&a.0));
 
     let mut r_vocab_vec_string = vec![];
-
     for el in r_vocab_vec {
         let el0 = el.0.to_string();
         let el1 = el.1;
         r_vocab_vec_string.push(format!("{el0}  {el1}"));
     }
-
     println!("> The vocabulary has been created.");
 
     //main logic end
@@ -72,16 +65,13 @@ fn main() {
     let count = r_vocab_vec_string.len();
     let title = "Total unique words: ".to_string() + &count.to_string() + "\n";
     let mut r_vocab_vec_full = vec![];
-
     r_vocab_vec_full.push(title);
     r_vocab_vec_full.append(&mut r_vocab_vec_string);
 
     let r_vocab = r_vocab_vec_full.join("\n");
     let mut file = File::create("r_vocab.txt").expect(">>>>>>>> Can't create file!\n");
-
     file.write_all(r_vocab.as_bytes())
         .expect(">>>>>>>> Can't write file!\n");
-
     println!("> The vocabulary has been written in a file.");
 
     let elapsed = now.elapsed();

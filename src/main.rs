@@ -25,6 +25,11 @@ fn main() {
     let re2 = Regex::new(r" {2,}").unwrap();
     raw_vocab = re1.replace_all(&mut raw_vocab, " ").to_string();
     raw_vocab = re2.replace_all(&mut raw_vocab, " ").trim().to_string();
+    if raw_vocab.len() == 0 {
+        println!("> The source file does not have Latin characters.");
+        println!("> NOT DONE!");
+        process::exit(0);
+    }
 
     let mut raw_vocab_vec: Vec<String> = raw_vocab
         .split(" ")

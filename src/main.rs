@@ -54,7 +54,7 @@ fn main() {
         process::exit(0);
     }
 
-    //main logic start
+    // MAIN LOGIC BEGIN
 
     let mut count = 0;
     let mut word = raw_vocab_vec_clear.get(0).unwrap().to_string();
@@ -80,7 +80,7 @@ fn main() {
     }
     println!("> The vocabulary has been created.");
 
-    //main logic end
+    // MAIN LOGIC END
 
     let count = r_vocab_vec_string.len();
     let title = "Total unique words: ".to_string() + &count.to_string() + "\n";

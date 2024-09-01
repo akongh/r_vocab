@@ -76,8 +76,16 @@ fn main() {
     r_vocab_vec.sort_by(|a, b| b.0.cmp(&a.0));
 
     let mut r_vocab_vec_string = vec![];
+    let count_max_length = r_vocab_vec[0].0.to_string().len();
     for el in r_vocab_vec {
-        let el0 = el.0.to_string();
+        let length_diff = count_max_length - el.0.to_string().len();
+        let leveling_space = " ".to_string();
+        let el0 = if length_diff != 0 {
+            let leveling_spaces = leveling_space.repeat(length_diff);
+            leveling_spaces + &el.0.to_string()
+        } else {
+            el.0.to_string()
+        };
         let el1 = el.1;
         r_vocab_vec_string.push(format!("{el0}  {el1}"));
     }

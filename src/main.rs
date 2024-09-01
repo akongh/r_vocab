@@ -52,7 +52,10 @@ fn main() {
     }
     println!("> The source text has been cleared.");
     if raw_vocab_vec_clear.len() == 0 {
-        println!("> The source file does not have English words with a length of {min_word_long} or more letters.");
+        println!(
+            "> The source file does not have English words with a length of {} or more letters.",
+            min_word_long
+        );
         println!("> NOT DONE!");
         process::exit(0);
     }

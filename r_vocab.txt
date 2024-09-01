@@ -1,6 +1,6 @@
 Total unique words: 6
 
-4  rust
+10  rust
 2  asdfghjkl
 2  qwertyuiop
 2  rational

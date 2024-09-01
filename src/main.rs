@@ -15,7 +15,8 @@ fn main() {
     file.read_to_string(&mut raw_vocab)
         .expect(">>>>>>>> Can't read the file!\n");
     if raw_vocab.len() == 0 {
-        println!("> Source file is empty.\n> NOT DONE!");
+        println!("> Source file is empty.");
+        println!("> NOT DONE!");
         process::exit(0);
     }
     println!("> The text has been obtained from a source file.");

@@ -1,6 +1,7 @@
 use regex::Regex;
 use std::fs::File;
 use std::io::prelude::*;
+use std::process;
 use std::time::Instant;
 //todo: add comments
 //todo: add tests
@@ -13,7 +14,11 @@ fn main() {
     let mut raw_vocab = String::new();
     file.read_to_string(&mut raw_vocab)
         .expect(">>>>>>>> Can't read the file!\n");
-    println!("> The source text has been obtained from a file.");
+    if raw_vocab.len() == 0 {
+        println!("> Source file is empty.\n> NOT DONE!");
+        process::exit(0);
+    }
+    println!("> The text has been obtained from a source file.");
 
     let re1 = Regex::new(r"[^A-Za-z]").unwrap();
     let re2 = Regex::new(r" {2,}").unwrap();

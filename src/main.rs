@@ -26,7 +26,7 @@ fn main() {
     raw_vocab = re1.replace_all(&mut raw_vocab, " ").to_string();
     raw_vocab = re2.replace_all(&mut raw_vocab, " ").trim().to_string();
     if raw_vocab.len() == 0 {
-        println!("> The source file does not have Latin characters.");
+        println!("> The source file does not have English words.");
         println!("> NOT DONE!");
         process::exit(0);
     }

@@ -39,7 +39,7 @@ fn main() {
     raw_vocab_vec.sort();
 
     let mut raw_vocab_vec_clear = vec![];
-    let min_word_long = 4;
+    let min_word_long = 2;
     for el in raw_vocab_vec {
         if el.len() >= min_word_long {
             raw_vocab_vec_clear.push(el);
@@ -47,7 +47,7 @@ fn main() {
     }
     println!("> The source text has been cleared.");
     if raw_vocab_vec_clear.len() == 0 {
-        println!("> The source file does not have English words that are more than {min_word_long} letters long.");
+        println!("> The source file does not have English words with a length of {min_word_long} or more letters.");
         println!("> NOT DONE!");
         process::exit(0);
     }

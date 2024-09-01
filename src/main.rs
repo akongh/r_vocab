@@ -3,6 +3,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::process;
 use std::time::Instant;
+//todo: add a license
 //todo: add comments
 //todo: add tests
 //todo: add colors for console text

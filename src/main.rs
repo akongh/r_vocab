@@ -10,6 +10,8 @@ use std::time::Instant;
 fn main() {
     let now = Instant::now();
 
+    println!("Rational Vocabulary 0.1.0");
+
     let mut file = File::open("text.txt").expect(">>>>>>>> Can't open file!\n");
     let mut raw_vocab = String::new();
     file.read_to_string(&mut raw_vocab)
